@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<style>
+    .inner {
+        /* height: 100px; */
+        background-color: #9f8170;
+    }
+
+    .coffee-head {
+        width: 100%;
+        color: #fff;
+        background-color: #005B3E;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        box-shadow: #fff;
+    }
+    .total{
+        background-color: #9f8170;
+    }
+    .circle-button {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        border-radius: 50%; /* Make it circular */
+        background-color: #00704A; /* Starbucks Green */
+        color: #fff; /* Text color */
+        text-align: center;
+        line-height: 40px; /* Center text vertically */
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s; /* Add smooth transition */
+    }
+    
+    .card {
+        text-align: center;
+        background-color: transparent;
+        /* Set background color to transparent */
+        border: none;
+        /* Remove border */
+        color: black;
+        /* Set text color to black */
+        max-width: 400px;
+        /* Set maximum width for the card */
+        transition: transform 0.3s;
+        /* Add transition for transform effect */
+    }
+
+    /* Style for card images with a simple 2D effect */
+    .card img {
+        max-height: 400px;
+        max-width: 100%;
+        /* Ensure the image doesn't exceed the card width */
+        transition: transform 0.3s;
+        display: block;
+        /* Make sure the image is treated as a block element */
+        margin: auto;
+        /* Center the image horizontally */
+    }
+
+    .card:hover img {
+        transform: scale(1.1);
+        /* Increase size on hover for a simple 2D effect */
+    }
+
+    /* Adjust the width of the card body */
+    .card-body {
+        margin-top: 20px;
+        padding: 10px;
+        /* Adjust padding for content within the card */
+        text-align: center;
+        /* Center the content horizontally */
+
+    }
+    .btn-Remove{
+        background-color: black; /* Set initial background color to black */
+        border-radius: 10px; /* Make the button slightly round */
+        transition: background-color 0.3s; /* Add smooth transition for color change */
+        color: #fff;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .btn-Remove:hover{
+        background-color: #005B3E;
+        color: #fff;
+
+    }
+    .description2{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #2b1010;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 3D effect with shadow */
+
+    }
+    .description{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .minus{
+        font-weight: bold;
+        color: #fff;
+        border-radius: 40%;
+        background-color: #232b2b;
+    }
+    .minus:hover{
+        color: white;
+        background-color:#242124;
+    }
+    .plus{
+        font-weight: bold;
+        color: #fff;
+        border-radius: 40%;
+        background-color: #232b2b;
+    }
+    .plus:hover{
+        color: white;
+        background-color:#242124;
+    }
+</style>
+
+<div class="container">
+    <div class="row inner">
+        <div class="col-md-8">
+            <h5 class="p-3 coffee-head">Bucket List</h5>
+            <div class="row">
+                {% for x in coffee %}
+                <div class="card col-md-6">
+                    <img src="{{x.cid.cimage.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+
+                        <p class="description"><strong class="description2">Coffee Name:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.name}}</p>
+                        <p class="description"><strong class="description2">Price:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.price}}</p>
+                        {% if x.cid.cat == 1 %}
+                        <p class="description"><strong class="description2">Category :</strong>&nbsp;&nbsp;&nbsp;Cold Coffee</p>
+                        {% elif x.cid.cat == 2 %}
+                        <p class="description"><strong class="description2">Category :</strong>&nbsp;&nbsp;&nbsp;Hot Coffee</p>
+                        {% elif x.cid.cat == 3 %}
+                        <p class="description"><strong class="description2">Category :</strong>&nbsp;&nbsp;&nbsp;Black Coffee</p>
+                        {% else %}
+                        <p class="description"><strong class="description2">Category :</strong>&nbsp;&nbsp;&nbsp;Coffee House Special</p>
+                        {% endif %}
+                        <p class="description"><strong class="description2">Coffee description:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.cdetails}}</p>
+                        <p>
+                            <strong class="description2">Add:</strong>
+                            <a href="/updateqty/0/{{x.id}}"><button class="btn minus">-</button></a>
+                            <input type="number" value="{{x.qty}}">
+                            <a href="/updateqty/1/{{x.id}}"><button class="btn plus">+</button></a>
+                        </p>
+                        <a href="/remove/{{x.id}}"><button class="btn btn-Remove">Remove</button></a>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 total">
+            <h5 class="coffee-head p-3">Total Amount</h5>
+            <p><strong>Total({{n}} items):</strong>Rs.{{total}}</p>
+            <hr>
+            <p><strong>Total Amount:</strong>Rs.{{total}}</p>
+            <a href="/placeorder"><button class="circle-button">Place Order</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock 'main' %}

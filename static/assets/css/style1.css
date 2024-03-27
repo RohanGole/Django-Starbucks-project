@@ -1,0 +1,61 @@
+.row1{
+    background-color: #228b22;
+}
+.img-fluid{
+    max-width: 100%;
+    height: auto;
+
+}
+
+.container-fluid img{
+
+    width: 65px;
+    height: 65px;
+    left:10px;
+    margin-left: 5px;
+    border-radius: 100%;
+}
+
+.container-fluid a{
+    color: rgb(130, 154, 135);
+  }
+
+
+#ABT {
+    font-family: cursive;
+    color: rgb(239, 218, 193);
+
+}
+
+.anchor{
+    text-decoration: none;
+    
+}
+
+
+.menu1{
+    text-align: center;
+    /* background-color: #c1d4c1;
+    color: #243e03; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    
+
+}
+
+
+/* .booktable{
+    background-image: url("static/assets/images/cup.jpg");
+    background-attachment: fixed;
+    padding: auto;
+    
+} */
+
+
+.contact h5{
+    color: brown;
+}
+.menu{
+    background-color: rgb(169, 216, 125);
+}
+
