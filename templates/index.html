@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+     <!-- =========================== main content ========================== -->
+
+  <style>
+    form{
+      background-image: url("static/assets/images/bottle.jpg");
+
+    }
+    .p{
+      color: white;
+  }
+
+  </style>
+  
+  <div class="booktable">
+    <form method="post" action="/booktable" class="mt-5 p-3">
+      {% csrf_token %}
+        <div class="row4" >
+            <div class="col-lg-4 col-auto mt-5 p-4 mx-auto"><h3 class="p">Name:-</h3>
+                <input class="form-control" type="text" name="name" id="name" placeholder="Your Name">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="col-lg-4 col-auto p-4 mx-auto"><h3 class="p">Email:-</h3>
+              <input class="form-control" type="email" name="email" id="email" placeholder="Your Email">
+           </div>
+          </div>
+
+          <div class="row3">
+            <div class="col-lg-4 col-auto p-4 mx-auto"><h3 class="p">Phone no.:-</h3>
+                <input class="form-control" type="text" name="phone" id="phone" placeholder="Your Phone Number">
+            </div>
+          </div>
+        
+        <div class="row">
+            
+            <div class="col-lg-4 col-auto p-4 mx-auto"><h3 class="p">Number of coffes:-</h3>
+                <input class="form-control" type="number" name="people" id="people" placeholder="#Of people">
+            </div>
+        <div>
+        <div class="row ">
+          <div class="col-md-12 col-auto p-4 mx-auto"><h3 class="p">Address:-</h3>
+            <textarea class="form-control" name="message" rows="5" id="message" placeholder="Message"></textarea>
+          </div>
+        </div>
+
+
+
+      <div class="row mt-4">
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-warning">Place Order</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+
+{% endblock 'main' %}

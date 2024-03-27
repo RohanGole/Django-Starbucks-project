@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<script>
+    alert("pay and get what you love !!!")
+  </script>
+<!--cart content-->
+<div class="row mt-5">
+    <div class="col-md-9">
+        <h5 class="bg-black text-white p-3">Customer detail</h5>
+        {% for x in coffee %}
+        {% if forloop.counter == 1 %}
+        <p><strong>Name: </strong>&nbsp;&nbsp;{{x.uid.username}}</p>
+        <p><strong>Mobile: </strong>&nbsp;&nbsp;9137910120</p>
+        <p><strong>Email: </strong>&nbsp;&nbsp;{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+        <br><br>
+        <div class="row">
+            <h5 class="bg-black text-white p-3">Coffee detail</h5>
+            {% for x in coffee %}
+            <div class="col-md-4">
+                <img src="{{x.cid.cimage.url}}" width="100%" alt="" />
+
+            </div>
+            <div class="col-md-8">
+                
+                <p><strong>Coffee Name:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.name}}</p>
+                <p><strong>Price:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.price}}</p>
+                {% if x.cid.cat == 1 %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Cold Coffee</p>
+                {% elif x.cid.cat == 2 %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Hot Coffee</p>
+                {% elif x.cid.cat == 3 %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Black Coffee</p>
+                {% else %}
+                <p><strong>category :</strong>&nbsp;&nbsp;&nbsp;Coffee House Special</p>
+                {% endif %}
+                
+                {% comment %} <p><strong>category:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.cat}}</p> {% endcomment %}
+                <p><strong>Coffee description:</strong>&nbsp;&nbsp;&nbsp;{{x.cid.cdetails}}</p>
+                <p>
+                    <strong>QTY:</strong>
+                    <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                    <input type="number" value="{{x.qty}}">
+                    <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></a>
+                </p>
+                <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+            </div><br><br>
+            
+            <hr>
+            {% endfor %}
+        </div>
+
+    </div>
+    <!--customer and product details-->
+    <div class="col-md-3">
+
+        <h5 class="bg-black text-white p-3">Total Amount</h5>
+        <p><strong>Total({{n}} items):</strong>Rs.{{total}}</p>
+        <hr>
+        <p><strong>Total Amount:</strong>Rs.{{total}}</p>
+        <a href="/makepayment"><button class="btn btn-success">Make payment</button></a>
+    </div>
+    <!--Total amount section-->
+</div>
+
+
+<!--cart content end-->
+
+{% endblock 'main' %}

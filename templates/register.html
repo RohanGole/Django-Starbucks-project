@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <title>Registration page</title>
+</head>
+<style>
+    body {
+        background-image: url("{%static 'assets/images/slide3.webp' %} "); /* Replace 'your_background_image.jpg' with your image path */
+        background-size: cover;nter;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size:50%; 
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .register-form {
+        background-color: rgba(209,190,168,0.5);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        text-align: center;
+        color: #bc8f8f;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .circle-button {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #00704A;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .circle-button:hover {
+        background-color: #005B3E;
+        transform: translateY(-2px);
+    }
+
+    .mb-3 {
+        margin-bottom: 15px;
+    }
+
+    .register {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #00704A;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-radius: 8px;
+    }
+    .login{
+        color: white;
+    }
+    .login:hover{
+        color: green;
+
+    }
+
+    .register:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <div class="col-md-4 shadow mt-5 p-4 mx-auto register-form">
+            <h2>Registration</h2>
+            {% if errmsg %}
+            <div class="alert alert-danger">
+                {{errmsg}}
+            </div>
+            {% endif %}
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Input1" class="form-label">Username : </label>
+                    <input type="text" class="form-control" id="Input1" name="uname" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label for="Input2" class="form-label">Password : </label>
+                    <input type="password" class="form-control" id="Input2" name="upass" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <label for="Input3" class="form-label">Confirm password : </label>
+                    <input type="password" class="form-control" id="Input3" name="ucpass" placeholder="Confirm Password">
+                </div>
+                <div class=" text-center mb-3">
+                    <button type="submit" class="register">Register</button>
+                    Already a user? <a href="/login" class="login"><b>Login</b></a>
+                </div>
+                {% if success %}
+                <div class="alert alert-success">
+                    {{success}}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/proper.min.js' %}"></script>
+</body>
+
+</html>

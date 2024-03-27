@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<style>
+  .menu1 {
+    background-color: #00704A;
+    width: 98%;
+    height: 50px;
+    margin-left: 1%;
+    color: black;
+  }
+
+  .menu2 {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    margin-left: 1%;
+    color: black;
+  }
+
+  .row1 {
+    padding-top: 15px;
+    background-color: #00704A;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: 70px;
+    color: white;
+  }
+
+  .i {
+    background-color: rgb(241, 229, 213);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-size: cover;
+  }
+
+  .r {
+    background-image:url("{%static 'assets/images/plate.jpg' %} ");
+
+  }
+
+  #ABT {
+    font-family: cursive;
+    color: #8b4513;
+
+  }
+
+  .love {
+    color: white;
+  }
+
+  /* Style for card images with a simple 2D effect */
+  .card {
+    background-color: transparent;
+    /* Set background color to transparent */
+    border: none;
+    /* Remove border */
+    color: black;
+    /* Set text color to black */
+    max-width: 200px;
+    /* Set maximum width for the card */
+    transition: transform 0.3s;
+    /* Add transition for transform effect */
+  }
+
+  /* Style for card images with a simple 2D effect */
+  .card img {
+    max-width: 100%;
+    /* Ensure the image doesn't exceed the card width */
+    transition: transform 0.3s;
+    display: block;
+    /* Make sure the image is treated as a block element */
+    margin: auto;
+    /* Center the image horizontally */
+  }
+
+  .card:hover img {
+    transform: scale(1.1);
+    /* Increase size on hover for a simple 2D effect */
+  }
+
+  /* Adjust the width of the card body */
+  .card-body {
+    padding: 10px;
+    /* Adjust padding for content within the card */
+    text-align: center;
+    /* Center the content horizontally */
+
+  }
+
+  .btn-submit {
+    background-color: #9f8170;
+    border: none;
+  }
+</style>
+<div class="row1">
+  <div class="col">
+    <marquee>
+      <h2 style="width: 100%;"><b>KEEP VISITING US!!!____LOVE IS COFFEE...COFFEE IS LOVE</b></h2>
+    </marquee>
+  </div>
+</div>
+
+<div class="row mt-1">
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'assets/images/cbean.jpg' %}" class="d-block w-100" width="100%" height="700px"
+          alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/images/3cups.jpg' %}" class="d-block w-100" width="100%" height="700px" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/images/slide3.webp' %}" class="d-block w-100" width="100%" height="700px" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/images/2cc.webp' %}" class="d-block w-100" width="100%" height="700px" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+<div class="i"><!--image div-->
+
+  <div class="row mt-3">
+    <div class="col-md-12 text-center">
+      {% comment %} <h2 class="text-light mt-3"
+        style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-weight: bold; color: black;">Filter And Buy what you
+        want Review us and get extra coffee</h2> {% endcomment %}
+      <br>
+      <br>
+      <h2 class="text-light" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-weight: bold; color: white;">Sort
+        by Price</h2>
+
+      <p>
+        <a href="/sort/0" class="anchor font-weight-bold"
+          style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-weight: bold; color: black;">Low to High</a>
+        <span class="mx-3 text-light">|</span>
+        <a href="/sort/1" class="anchor font-weight-bold"
+          style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-weight: bold; color: black;">High to Low</a>
+      </p>
+    </div>
+  </div>
+
+
+  <h5 class="menu1 mt-4">Enjoy your drink</h5>
+  <div class="col-md-12">
+    <div class="row">
+
+      {% for x in items %}
+      <div class="col-md-2 mt-3">
+        <div class="card" style="width: 100%">
+          <img src="{{x.cimage.url}}" width="90%" height="250px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{x.name}}</h5>
+            <p class="card-text">Rs.{{x.price}}</p>
+
+            {% if x.cat == 1 %}
+            <p class="card-text filter-category">Our Special</p>
+            {% elif x.cat == 2 %}
+            <p class="card-text filter-category">Creamy</p>
+            {% elif x.cat == 3 %}
+            <p class="card-text filter-category">Chocolate</p>
+            {% endif %}
+
+            <a href="/cdetails/{{x.id}}" class="btn btn-dark btn-submit">See details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div>
+        <hr>
+        <div class=" text-center p-3 bg-opacity-50"><strong class="fs-4 text-decoration-underline ">LOCATION</strong>
+        </div><br>
+
+      </div>
+
+      <!--===============================================================-->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.812431982366!2d72.99335007712912!3d19.071982706051013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1e46192408f%3A0xebbeec376d06d7d!2sStarbucks!5e0!3m2!1sen!2sin!4v1707125602271!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <!--===============================================================-->
+
+      <div class="row mt-3">
+
+        <div class=" text-center p-3 bg-opacity-50"><strong class="fs-4 text-decoration-underline ">About Us</strong>
+        </div>
+        <div class="col-md-6 mt-3 p-4">
+
+          <img src="{% static 'assets/images/about1.jpeg' %}" class="img-thumbnail" height="100%" width="60%"
+            alt="image" />
+        </div>
+
+        <div class="col-md-6 mt-5 fs-5 p-4">
+          <p id="ABT">You can get your favorite Starbucks coffees and more at most grocery stores and online nationwide,
+            with products ranging from iced coffee and K-cups to signature syrups and Starbucks Refreshers. Snag classic
+            brews like the Pike Place Roast, House Blend and Blonde Roast Espresso, or add some flavor into your mug
+            with Cinnamon Dolce Coffee K-cups, instant Strawberry Lemonade Refreshers and Cocoa and Honey Cold Brew.
+          </p>
+        </div>
+
+      </div><!--end 3rd row-->
+      <div class="row">
+        <div class="col-md-6 mt-5 fs-5 p-4">
+          <p id="ABT">Like the lush Indonesian island of its origin, this dark-roast coffee offers full body with a
+            smooth mouthfeel, lingering flavors of dried herbs and fresh earth, and almost no acidity. Expert roasters
+            love transforming the unpredictable beans from dark coral green to tiger-orange to a rich, oily mahogany to
+            reveal its bold flavors that many can't live without. High-quality beans have been ethically sourced to
+            foster a better future for farmers and a more stable climate for the planet. Single-origin coffee is
+            packaged in single-serve coffee pods that are easy to prepare for quick, simple enjoyment. Sumatra Blend
+            coffee is designed for single-serve coffeemakers.</p>
+        </div>
+        <div class="col-md-6 p-3">
+          <img src="{% static 'assets/images/2.webp' %}" class="img-thumbnail" height="100%" width="60%" alt="image" />
+        </div>
+      </div> <!--end 4 th row-->
+
+      <div class="row">
+        <div class="col-md-6 mt-3 p-4">
+          <img src="{% static 'assets/images/bottle.jpg' %}" class="img-thumbnail" height="100%" width="60%"
+            alt="image" />
+        </div>
+        <div class="col-md-6 mt-5 fs-5 p-4">
+          <p id="ABT">You can now drink your coffee anytime and anywhere with Starbucks Bottled Frappuccino. There is no
+            more pressure of drinking your coffee all at once since it is now resealable. Keep it inside your fridge for
+            cooling or bring it with you inside your bag to drink whenever you are thirsty for some coffee. </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mt-5 fs-5 p-4">
+          <p id="ABT">If you are someone who enjoys drinking coffee often, chances are that you have tried Starbucks
+            coffee at least once in your life. Starbucks is one of the leading brands for all coffee-based beverages,
+            but they have so many blends that it can be hard to decide which one to get. In today’s review, I am going
+            to go over the best Starbucks coffee beans to show you which blends you must try!</p>
+        </div>
+        <div class="col-md-6 p-4">
+          <img src="{% static 'assets/images/bean.webp' %}" class="img-thumbnail" height="100%" width="60%"
+            alt="image" />
+        </div>
+      </div> <!--end 4 th row-->
+    </div><!--image div ends-->
+    {% endblock 'main' %}

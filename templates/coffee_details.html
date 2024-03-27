@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<!--main content-->
+
+<style>
+    .circle-button {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        border-radius: 50%; /* Make it circular */
+        background-color: #00704A; /* Starbucks Green */
+        color: #fff; /* Text color */
+        text-align: center;
+        line-height: 50px; /* Center text vertically */
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add box shadow for 3D effect */
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add smooth transitions */
+    }
+    
+    /* Slight lift on hover for 3D effect */
+    .circle-button:hover {
+        background-color: #A37E49; /* Darker shade on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhance box shadow on hover */
+    }
+</style>
+
+
+
+<div class="row mt-5">
+    {% for x in items %}
+    <div class="col-md-6">
+        <img src="{{x.cimage.url}}" width="90%" height="400px" alt=""/>
+    </div>
+    <div class="col-md-6">
+        <p><strong>Coffee Name:</strong>&nbsp;&nbsp;&nbsp;{{x.name}}</p>
+        <p><strong>Price:</strong>&nbsp;&nbsp;&nbsp;Rs.{{x.price}}</p>
+        {% if x.cat == 1 %}
+        <p><strong>category:</strong>&nbsp;&nbsp;&nbsp;Cold Coffee</p>
+        {% elif x.cat == 2 %}
+        <p><strong>category:</strong>&nbsp;&nbsp;&nbsp;Hot Coffee</p>
+        {% elif x.cat == 3 %}
+        <p><strong>category:</strong>&nbsp;&nbsp;&nbsp;Black Coffee</p>
+        {% else %}
+        <p><strong>category:</strong>&nbsp;&nbsp;&nbsp;Coffee House Special</p>
+        {% endif %}
+
+        <p><strong>Coffee description:</strong>&nbsp;&nbsp;&nbsp;{{x.cdetails}}</p>
+        <a href="/addtocart/{{x.id}}"><button class="circle-button">Buy This</button></a>
+        <a href="/viewcart"><button class="circle-button">Description</button></a>
+        <a href="/menu"><button class="circle-button">Buy more</button></a>
+        <br>
+        {% if success %}
+        <div class="alert alert-success">
+            {{success}}
+        </div>
+        {% endif %}
+
+        {% if msg %}
+        <div class="alert alert-danger">
+            {{msg}}
+        </div>
+         {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<!--main content end-->
+
+{% endblock 'main' %}

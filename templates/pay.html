@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+<button id="rzp-button1">Pay now</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_lbfRW5iyvcv9Xb", // Enter the Key ID generated from the Dashboard
+    "amount": "{{data.amount}}", // Amount is in currency subunits. Default currency is MYR. Hence, 50000 refers to 50000 sen.
+    "currency": "INR",
+    "name": "kharido",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "redirect": true,
+    "prefill": {
+        "name": "Siti Aisyah",
+        "email": "siti.aisyah@example.com",
+        "contact": "+601113455567"
+    },
+    "notes": {
+        "address": "Curlec Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+{% endblock 'main' %}

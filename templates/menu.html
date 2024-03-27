@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<style>
+    .menu {
+        background-color: #005B3E;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+    }
+
+    .menu1 {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        color: black;
+        /* Set text color to white */
+        width: 100%;
+        height: 50px;
+        margin-top: 2%;
+    }
+    .catt{
+        width:101%;
+        background-color: rgb(241, 229, 213);
+    }
+    .lh{
+        font-size: 20px;
+    }
+
+    /* Style for filter by category text */
+    .filter-category {
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Style for category anchors */
+    .anchor {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* Style for submit button */
+    .btn-submit {
+        border-radius: 20px;
+        /* Make the button slightly round */
+        transition: background-color 0.3s, transform 0.3s;
+        /* Add smooth transition for background color and transform */
+    }
+
+    .btn-submit:hover {
+        background-color: #00704A;
+        /* Darker shade on hover */
+        transform: translateY(-2px);
+        /* Move up slightly on hover for 3D effect */
+    }
+
+    /* Style for filter and sort sections */
+    .filter-section {
+        margin-top: 20px;
+    }
+
+    /* Style for card images with a simple 2D effect */
+    .card {
+        background-color: transparent;
+        /* Set background color to transparent */
+        border: none;
+        /* Remove border */
+        color: black;
+        /* Set text color to black */
+        max-width: 200px;
+        /* Set maximum width for the card */
+        transition: transform 0.3s;
+        /* Add transition for transform effect */
+    }
+
+    /* Style for card images with a simple 2D effect */
+    .card img {
+        max-width: 100%;
+        /* Ensure the image doesn't exceed the card width */
+        transition: transform 0.3s;
+        display: block;
+        /* Make sure the image is treated as a block element */
+        margin: auto;
+        /* Center the image horizontally */
+    }
+
+    .card:hover img {
+        transform: scale(1.1);
+        /* Increase size on hover for a simple 2D effect */
+    }
+
+    /* Adjust the width of the card body */
+    .card-body {
+        padding: 10px;
+        /* Adjust padding for content within the card */
+        text-align: center;
+        /* Center the content horizontally */
+
+    }
+
+    .our {
+        width: 99.2%;
+    }
+
+    .minmax {
+        margin-left: 150px;
+    }
+
+    .rounded-button {
+        font-weight: bold;
+        border-radius: 20px;
+        /* Adjust the value to change the roundness */
+        background-color: #00704A;
+        border: 2px solid #00704A;
+        /* Brown border */
+        transition: background-color 0.3s;
+        /* Smooth transition for hover effect */
+    }
+
+    .rounded-button:hover {
+        background-color: #A37E49;
+        /* Darker shade on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        /* Brown background color on hover */
+    }
+
+    /* Remove default button styles */
+    .rounded-button a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .rounded-button:focus {
+        outline: none;
+        /* Remove the default focus outline */
+    }
+
+    .types {
+        margin-left: 260px;
+    }
+    
+</style>
+
+<!-- ==================== main content ======================-->
+<div class="menu ps-2">
+    <div class="row mt-3">
+        <p class="fw-bold bg-success-subtle p-2 text-center fs-4 text-decoration-underline our">OUR MENU</p>
+    </div>
+    <div class="row ">
+        <div class="col-md-12">
+            <h5 class="text-center filter-category">Filter by Category</h5>
+        </div>
+
+        <div class='row types'>
+            <div class='col-3'>
+                <button type="submit" class="rounded-button"><a href="/catfilter/1">Our Special</a></button>
+            </div>
+
+            <div class='col-3'>
+                <button type="submit" class="rounded-button"><a href="/catfilter/2">Creamy</a></button>
+            </div>
+
+            <div class='col-3'>
+                <button type="submit" class="rounded-button"><a href="/catfilter/3">Chocolate</a></button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-5 minmax">
+                <div class="card text-center ps-3">
+                    <h5 class="filter-category">Filter by price</h5>
+                    <hr>
+                    <form action="/range" class="row g-3">
+                        <div class="col-md-6">
+                            <label for="Input1" class="form-label filter-category lh">Min value</label>
+                            <input type="number" name="min" class="form-control" id="Input1"
+                                aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Input2" class="form-label filter-category lh">Max value</label>
+                            <input type="number" name="max" class="form-control" id="Input2">
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-success btn-submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!--col-md-6-->
+            <div class="col-md-3">
+                <div class="filter-section text-center">
+                    <h4 class="filter-category">Sort by price</h4>
+                    <hr>
+                    <div class="row lh">
+                        <div class="col-6">
+                            <p><a href="/sort/0" class="anchor">Low to High</a></p>
+                        </div>
+                        <div class="col-6">
+                            <p><a href="/sort/1" class="anchor">High to Low</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!---row-->
+    </div>
+
+    <div class="row catt">
+        <div class="col-md-12">
+            <div class="row">
+                <h3 class="text-decoration-underline menu1 pt-2">{{ cat }}</h3>
+                {% for x in items %}
+                <div class="col-md-2 mt-6">
+                    <div class="card" style="width: 100%">
+                        <img src="{{x.cimage.url}}" width="90%" height="250px" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{x.name}}</h5>
+                            <p class="card-text">Rs.{{x.price}}</p>
+
+                            {% if x.cat == 1 %}
+                            <p class="card-text filter-category">Our Special</p>
+                            {% elif x.cat == 2 %}
+                            <p class="card-text filter-category">Creamy</p>
+                            {% elif x.cat == 3 %}
+                            <p class="card-text filter-category">Chocolate</p>
+                            {% endif %}
+
+                            <a href="/cdetails/{{x.id}}" class="btn btn-dark btn-submit">See details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--=================== end main content ===================== -->
+
+{% endblock 'main' %}

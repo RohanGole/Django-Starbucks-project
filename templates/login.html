@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <title>Login page</title>
+</head>
+<style>
+
+    body {
+        background-image: url("{%static 'assets/images/slide3.webp' %} "); /* Replace 'your_background_image.jpg' with your image path */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+        
+    }
+
+    h3 {
+        text-align: center;
+        color: #bc8f8f;
+        background-color: rgba(255, 255, 255, 0.9); /* Light white background with transparency */
+        padding: 10px; /* Add padding for better visibility */
+    }
+    
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mb-3 {
+        margin-bottom: 15px;
+    }
+
+    .btn-danger {
+        border-radius: 20px; /* Rounded corners */
+        background-color: #644117; /* Bootstrap's danger color */
+        color: #fff; /* Text color */
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add smooth transitions */
+        cursor: pointer;
+        border: none;
+        outline: none;
+        padding: 10px 20px;
+    }
+
+    .btn-danger:hover {
+        background-color: #c95a49; /* Darker shade on hover */
+        transform: scale(1.05); /* Slight scale increase on hover for 3D effect */
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); /* Enhance box shadow on hover */
+    }
+
+    a {
+        color: white; /* Bootstrap's danger color */
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: green; /* Darker shade on hover */
+    }
+    .register-form {
+        background-color: rgba(209,190,168,0.5);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .home a {
+        text-decoration: none; /* Remove default underline */
+        color: black; /* Set text color to black */
+        font-weight: bold; /* Make the text bold */
+        transition: transform 0.3s, color 0.3s; /* Add smooth transition for 3D effect and color change */
+    }
+    
+    .home a:hover {
+        color: #008000; /* Green color on hover */
+        transform: translateY(-2px); /* Move the text up for a 3D effect */
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="col-md-12 home p-2">
+            <a href="/home"><b>Home</b></a>
+        </div>
+        <div class="col-md-4 shadow p-4 mx-auto register-form">
+            <h3>User Login</h3>
+            {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+            {% endif %}
+            <form method="POST" action="/login">
+                {% csrf_token %}
+                <div class="mb-3 text-center">
+                    <label for="Input1" class="form-label" style="color:black ;">Username :</label>
+                    <input type="email" class="form-control" id="Input1" name="uname" placeholder="name@example.com">
+                </div>
+                <div class="mb-3 text-center">
+                    <label for="Input2" class="form-label" style="color: black ;">Password :</b></label>
+                    <input type="password" class="form-control" id="Input2" name="upass" placeholder="password">
+                </div>
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-danger">Login</button><br>
+                </div>
+                <div class="reg text-center" style="color: white;">Not a user? <a href="/register" style="text-decoration: none;"><b> Register</b></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

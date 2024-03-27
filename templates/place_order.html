@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+  <style>
+    .form{
+      background-image: url("static/assets/images/bottle.jpg");
+      color: white;
+
+    }
+
+  </style>
+<div class="place_order">
+  <h2>Submit Your Review</h2>
+    <form method="post" action="{% url 'review' %}" class="mt-5 p-3">
+      {% csrf_token %}
+        <div class="row4" >
+            <div class="col-lg-4 col-auto mt-5 p-4 mx-auto"><h3 class="p" for="customer_name">Your Name:</h3>
+                <input class="form-control" type="text" name="customer_name" required id="name" placeholder="Your Name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-auto p-4 mx-auto"><h3 class="p" for="rating">Rating:</h3>
+                <input class="form-control" type="number" name="rating" id="people" min="1" max="5" required placeholder="#Of people">
+            </div>
+        <div>
+        <div class="row ">
+          <div class="col-md-12 col-auto p-4 mx-auto"><h3 class="p" for="review_text">Your Review:</h3>
+            <textarea class="form-control" name="review_text" required rows="5" id="message" placeholder="Message"></textarea>
+          </div>
+        </div>
+
+
+
+      <div class="row mt-4">
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-warning">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  {% comment %} <h2>Submit Your Review</h2>
+  <form method="post" action="{% url 'review' %}">
+    {% csrf_token %} {% endcomment %}
+    {% comment %} <label for="customer_name">Your Name:</label> {% endcomment %}
+    {% comment %} <input type="text" name="customer_name" required><br> {% endcomment %}
+    {% comment %} <label for="rating">Rating:</label> {% endcomment %}
+    {% comment %} <input type="number" name="rating" min="1" max="5" required><br> {% endcomment %}
+    {% comment %} <label for="review_text">Your Review:</label> {% endcomment %}
+    {% comment %} <textarea name="review_text" required></textarea><br> {% endcomment %}
+    {% comment %} <button type="submit">Submit Review</button> {% endcomment %}
+  {% comment %} </form> {% endcomment %}
+{% comment %} {% endblock %} {% endcomment %}
+
+
+
+{% endblock 'main' %}

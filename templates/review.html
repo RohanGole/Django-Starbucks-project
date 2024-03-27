@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'main' %}
+     <!-- =========================== main content ========================== -->
+
+  <style>
+    .review {
+      background-image: url("/static/assets/images/plate.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  
+
+  .circular-button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%; /* Make it circular */
+    background-color:  #00704A; /* Set background color */
+    color: #fff; /* Set text color */
+    cursor: pointer; /* Change cursor on hover */
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    transition: background-color 0.3s; /* Add smooth transition */
+}
+
+/* Change background color on hover */
+.circular-button:hover {
+    background-color: #9f8170;
+    
+}
+.p{
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    4px 4px 6px rgba(0, 0, 0, 0.4),
+    6px 6px 8px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  color: white;
+  margin-top: -5%;
+}
+.msg{
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.title {
+  text-align: center; /* Center align the text */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5), /* Main shadow */
+    4px 4px 6px rgba(0, 0, 0, 0.4), /* Additional shadow for depth */
+    6px 6px 8px rgba(0, 0, 0, 0.3); /* Additional shadow for more depth */
+  font-weight: bold;
+  color: #964B00;
+  padding-top: 20px;
+}
+
+
+  </style>
+  
+<div class="review">
+  <h2 class="title">Submit Your Review</h2>
+    <form method="post" action="{% url 'review' %}" class="mt-5 p-3">
+      {% csrf_token %}
+        <div class="row4" >
+            <div class="col-lg-4 col-auto mt-5 p-4 mx-auto"><h3 class="p" for="customer_name">Your Name:</h3>
+                <input class="form-control" type="text" name="customer_name" required id="name" placeholder="Your Name">
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-auto p-4 mx-auto"><h3 class="p" for="rating">Rating:</h3>
+                <input class="form-control" type="number" name="rating" id="people" min="1" max="5" required placeholder="#best of 5">
+            </div>
+        <div>
+        <div class="row msg">
+          <div class="col-md-12 col-auto p-4 mx-auto"><h3 class="p" for="review_text">Your Review:</h3>
+            <textarea class="form-control" name="review_text" required rows="5" id="message" placeholder="Message"></textarea>
+          </div>
+        </div>
+
+
+
+      <div class="row mt-4">
+        <div class="text-center">
+          <button type="submit" class="circular-button">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+<!--====================================================-->
+
+
+
+
+{% endblock 'main' %}
